@@ -23,6 +23,8 @@ function MenuTable() {
   const [pageSize, setPageSize] = useState(5);
   const [totalPages, setTotalPages] = useState(1);
   const [editJobData, setEditJobData] = useState(null);
+  const [generateJobTags, setGenerateJobTags] = useState('');
+  const [generateJobs, setGenerateJobs] = useState([]);
 
   const fetchJobs = async (term, pageSize, pageNumber) => {
     try {
@@ -113,6 +115,25 @@ function MenuTable() {
     setCurrentPage(1);
   };
 
+  const handleGenerateJobsInputChange = (e) => {
+    setGenerateJobTags(e.target.value);
+  };
+
+  const handleButtonGenerateJobsClick = async () => {
+    try{
+      const response = await axios.get(`http://localhost:4000/api/scrape/${generateJobTags}`);
+      setGenerateJobs(response.data.data);
+      setGenerateJobTags('');
+      setTimeout(() => {
+        window.location.reload();
+      }, 1500);
+      toast.success("Generate Job Success");
+    } catch (error) {
+      console.error('Error fetching jobs:', error);
+      toast.error("Error generating jobs");
+    }
+  }
+
   return (
     <>
       <ToastContainer />
@@ -136,12 +157,28 @@ function MenuTable() {
               />
             </InputGroup>
           </Box>
-          <Box>
-            <ButtonComponent text='Search' onClick={handleSearch} />
-          </Box>
+          <Flex ml='-25px'>
+            <Box>
+              <ButtonComponent text='Search' onClick={handleSearch} theColor='blue' />
+            </Box>
+          </Flex>
           <Flex justifyContent="flex-end" alignItems="center" gridColumn="span 3" gap={3}>
-            <ButtonComponent text='Add Jobs' onClick={() => onFormOpen()} />
-            <ButtonComponent text='Import to CSV' onClick={() => handleExport(searchTerm, pageSize, currentPage)} />
+            <Box width='250px'>
+              <InputGroup>
+                  <InputLeftElement pointerEvents='none'>
+                    <SearchIcon color="gray.300" />
+                  </InputLeftElement>
+                  <Input 
+                    type='text'
+                    placeholder="Generate Job Keyword"
+                    value={generateJobTags}
+                    onChange={handleGenerateJobsInputChange}
+                  />
+              </InputGroup>
+            </Box>
+            <ButtonComponent text='Generate Jobs' onClick={handleButtonGenerateJobsClick} theColor='green' />
+            <ButtonComponent text='Add Jobs' onClick={() => onFormOpen()} theColor='orange' />
+            <ButtonComponent text='Import to CSV' onClick={() => handleExport(searchTerm, pageSize, currentPage)} theColor='purple' />
           </Flex>
         </Grid>
       </Box>
@@ -164,9 +201,9 @@ function MenuTable() {
                   <Td>{job.jobLocation}</Td>
                   <Td gap='10px'>
                     <Flex gap='10px'>
-                      <ButtonComponent text="Details" onClick={() => onOpen(job.id)} />
-                      <ButtonComponent text="Delete" onClick={() => onDeleteOpen(job.id)} />
-                      <ButtonComponent text="Edit" onClick={() => onFormOpen(job)} />
+                      <ButtonComponent text="Details" onClick={() => onOpen(job.id)} theColor='teal' />
+                      <ButtonComponent text="Delete" onClick={() => onDeleteOpen(job.id)} theColor='red' />
+                      <ButtonComponent text="Edit" onClick={() => onFormOpen(job)} theColor='green' />
                     </Flex>
                   </Td>
                 </Tr>
