@@ -14,3 +14,5 @@ Tests:       11 passed, 11 total
 Snapshots:   0 total
 Time:        6.398 s
 Ran all test suites.
+
+Notes : Testing harus menggunakan babel, jika ingin running programnya hapus terlebih dahulu babel.config.js dan settingan babel di package.json
