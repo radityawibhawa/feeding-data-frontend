@@ -146,31 +146,31 @@ function MenuTable() {
               {/* <InputLeftElement pointerEvents="none">
                 <SearchIcon color="gray.300" />
               </InputLeftElement> */}
-              <Select
-                placeholder="Search Here"
-                value={{ label: searchTerm, value: searchTerm }}
-                onChange={handleSearchChange}
-                chakraStyles={{
-                  container: (provided) => ({
-                    ...provided,
-                    width: '300px', // Adjust the width as needed
-                  }),
-                }} // Fixed size
-                options={[
-                  // Add your options here
-                  { label: 'Java Spring', value: 'Java Spring' },
-                  { label: 'Python Django', value: 'Python Django' },
-                  { label: 'Python Flask', value: 'Python Flask' },
-                  { label: 'NodeJs Express', value: 'NodeJs Express' },
-                  { label: 'NodeJs Nest', value: 'NodeJs Nest' },
-                  { label: '.Net Core', value: '.Net Core' },
-                  { label: 'Angular', value: 'Angular' },
-                  { label: 'Reactjs', value: 'Reactjs' },
-                  { label: 'React Native', value: 'React Native' },
-                  { label: 'Flutter', value: 'Flutter' },
-                  // Add more options as needed
-                ]}
-              />
+            <Select
+              placeholder="Search Here"
+              value={{ label: searchTerm, value: searchTerm }}
+              onChange={handleSearchChange}
+              chakraStyles={{
+                container: (provided) => ({
+                  ...provided,
+                  width: '300px', // Adjust the width as needed
+                }),
+              }}
+              options={[
+                // Add your options here
+                { label: 'Java Spring', value: 'Java Spring' },
+                { label: 'Python Django', value: 'Python Django' },
+                { label: 'Python Flask', value: 'Python Flask' },
+                { label: 'NodeJs Express', value: 'NodeJs Express' },
+                { label: 'NodeJs Nest', value: 'NodeJs Nest' },
+                { label: '.Net Core', value: '.Net Core' },
+                { label: 'Angular', value: 'Angular' },
+                { label: 'Reactjs', value: 'Reactjs' },
+                { label: 'React Native', value: 'React Native' },
+                { label: 'Flutter', value: 'Flutter' },
+                // Add more options as needed
+              ]}
+            />
             </InputGroup>
           </Box>
           <Flex ml='-25px'>
@@ -191,11 +191,12 @@ function MenuTable() {
                     chakraStyles={{
                       container: (provided) => ({
                         ...provided,
-                        width: '300px', // Adjust the width as needed
+                        width: '300px',
+                        backgroundColor: 'white',
+                        zIndex: 9999,
                       }),
                     }}
                     options={[
-                      // Add your options here
                       { label: 'Java Spring', value: 'Java Spring' },
                       { label: 'Python Django', value: 'Python Django' },
                       { label: 'Python Flask', value: 'Python Flask' },
@@ -206,7 +207,6 @@ function MenuTable() {
                       { label: 'Reactjs', value: 'Reactjs' },
                       { label: 'React Native', value: 'React Native' },
                       { label: 'Flutter', value: 'Flutter' },
-                      // Add more options as needed
                     ]}
                   />
               </InputGroup>
@@ -217,7 +217,7 @@ function MenuTable() {
           </Flex>
         </Grid>
       </Box>
-      <Box paddingRight='50px' paddingLeft='50px' mt='20px'>
+      <Box paddingRight='50px' paddingLeft='50px' mt='20px' minHeight='300px'>
         <TableContainer>
           <Table variant='simple'>
             <Thead bg="teal.500">
