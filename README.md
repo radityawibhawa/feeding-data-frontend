@@ -5,9 +5,9 @@ Feeding Data Jobstreet adalah mini project untuk membuat aplikasi web daftar pek
 
 # Hasil Testing UI
 
-PASS  src/app/tests/ModalDelete.test.js
-PASS  src/app/tests/ModalDetail.test.js
-PASS  src/app/tests/ModalForm.test.js
+ - PASS  src/app/tests/ModalDelete.test.js
+ - PASS  src/app/tests/ModalDetail.test.js
+ - PASS  src/app/tests/ModalForm.test.js
 
 Test Suites: 3 passed, 3 total
 Tests:       11 passed, 11 total
