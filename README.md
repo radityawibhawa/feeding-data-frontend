@@ -5,5 +5,4 @@ Feeding Data Jobstreet adalah mini project untuk membuat aplikasi web daftar pek
 
 # Hasil Testing UI
 
-![imagetest](image.png)
-![imagetest2](imagew.png)
+![result](image.png)
