@@ -92,6 +92,9 @@ function ModalForm({ isOpen, onClose, onJobAdded, jobData }) {
       }
       onJobAdded();
       onClose();
+      setTimeout(() => {
+        window.location.reload();
+      }, 1500);
     } catch (error) {
       console.error('Error submitting job:', error);
       toast.error('Error submitting job');
@@ -148,7 +151,7 @@ function ModalForm({ isOpen, onClose, onJobAdded, jobData }) {
               />
             ))}
           </FormControl>
-          <Button mt='3px' colorScheme='teal' variant='outline' onClick={handleAddInput}>
+          <Button mt='3px' colorScheme='teal' variant='outline' onClick={handleAddInput} data-testid="add-responsibility">
             <AddIcon />
           </Button>
           <FormControl mt={3}>
@@ -163,7 +166,7 @@ function ModalForm({ isOpen, onClose, onJobAdded, jobData }) {
               />
             ))}
           </FormControl>
-          <Button colorScheme='teal' variant='outline' onClick={handleAddInputQualification}>
+          <Button colorScheme='teal' variant='outline' onClick={handleAddInputQualification} data-testid="add-qualification">
             <AddIcon />
           </Button>
         </ModalBody>

@@ -1,4 +1,6 @@
 import { Button, Flex, Modal, ModalBody, ModalCloseButton, ModalContent, ModalHeader, ModalOverlay, Text } from "@chakra-ui/react";
+import React from "react";
+
 
 function ModalDelete({ isOpen, onClose, jobId, onDelete }){
 

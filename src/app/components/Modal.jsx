@@ -20,6 +20,7 @@ import { FaMapMarkerAlt } from "react-icons/fa";
 import { FaClock } from "react-icons/fa";
 import { FaBuilding } from "react-icons/fa";
 import { FaMoneyBill } from "react-icons/fa";
+import React from 'react';
 
 function ModalDetail({ isOpen, onClose, jobId }) {
     

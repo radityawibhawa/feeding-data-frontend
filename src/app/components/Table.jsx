@@ -10,6 +10,7 @@ import ModalDelete from './ModalDelete';
 import Pagination from './Pagination';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Select } from 'chakra-react-select';
 
 function MenuTable() {
   const [jobs, setJobs] = useState([]);
@@ -65,8 +66,9 @@ function MenuTable() {
     setDeleteJobId(null);
   };
 
-  const handleSearch = () => {
-    fetchJobs(searchTerm, pageSize, currentPage);
+  const handleSearchChange = (selectedOption) => {
+    setSearchTerm(selectedOption.value);
+    fetchJobs(selectedOption.value, pageSize, currentPage);
   };
 
   const handleExport = async (searchTerm, pageSize, pageNumber) => {
@@ -115,8 +117,8 @@ function MenuTable() {
     setCurrentPage(1);
   };
 
-  const handleGenerateJobsInputChange = (e) => {
-    setGenerateJobTags(e.target.value);
+  const handleGenerateJobsInputChange = (selectedOption) => {
+    setGenerateJobTags(selectedOption.value);
   };
 
   const handleButtonGenerateJobsClick = async () => {
@@ -141,38 +143,71 @@ function MenuTable() {
         <Grid templateColumns='repeat(5, 1fr)' gap={2}>
           <Box width='250px'>
             <InputGroup>
-              <InputLeftElement pointerEvents="none">
+              {/* <InputLeftElement pointerEvents="none">
                 <SearchIcon color="gray.300" />
-              </InputLeftElement>
-              <Input
-                type="text"
+              </InputLeftElement> */}
+              <Select
                 placeholder="Search Here"
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                onKeyPress={(e) => {
-                  if (e.key === 'Enter') {
-                    handleSearch();
-                  }
-                }}
+                value={{ label: searchTerm, value: searchTerm }}
+                onChange={handleSearchChange}
+                chakraStyles={{
+                  container: (provided) => ({
+                    ...provided,
+                    width: '300px', // Adjust the width as needed
+                  }),
+                }} // Fixed size
+                options={[
+                  // Add your options here
+                  { label: 'Java Spring', value: 'Java Spring' },
+                  { label: 'Python Django', value: 'Python Django' },
+                  { label: 'Python Flask', value: 'Python Flask' },
+                  { label: 'NodeJs Express', value: 'NodeJs Express' },
+                  { label: 'NodeJs Nest', value: 'NodeJs Nest' },
+                  { label: '.Net Core', value: '.Net Core' },
+                  { label: 'Angular', value: 'Angular' },
+                  { label: 'Reactjs', value: 'Reactjs' },
+                  { label: 'React Native', value: 'React Native' },
+                  { label: 'Flutter', value: 'Flutter' },
+                  // Add more options as needed
+                ]}
               />
             </InputGroup>
           </Box>
           <Flex ml='-25px'>
             <Box>
-              <ButtonComponent text='Search' onClick={handleSearch} theColor='blue' />
+              <ButtonComponent text='Search' onClick={handleSearchChange} theColor='blue' />
             </Box>
           </Flex>
           <Flex justifyContent="flex-end" alignItems="center" gridColumn="span 3" gap={3}>
             <Box width='250px'>
               <InputGroup>
-                  <InputLeftElement pointerEvents='none'>
+                  {/* <InputLeftElement pointerEvents='none'>
                     <SearchIcon color="gray.300" />
-                  </InputLeftElement>
-                  <Input 
-                    type='text'
+                  </InputLeftElement> */}
+                  <Select
                     placeholder="Generate Job Keyword"
-                    value={generateJobTags}
+                    value={{ label: generateJobTags, value: generateJobTags }}
                     onChange={handleGenerateJobsInputChange}
+                    chakraStyles={{
+                      container: (provided) => ({
+                        ...provided,
+                        width: '300px', // Adjust the width as needed
+                      }),
+                    }}
+                    options={[
+                      // Add your options here
+                      { label: 'Java Spring', value: 'Java Spring' },
+                      { label: 'Python Django', value: 'Python Django' },
+                      { label: 'Python Flask', value: 'Python Flask' },
+                      { label: 'NodeJs Express', value: 'NodeJs Express' },
+                      { label: 'NodeJs Nest', value: 'NodeJs Nest' },
+                      { label: '.Net Core', value: '.Net Core' },
+                      { label: 'Angular', value: 'Angular' },
+                      { label: 'Reactjs', value: 'Reactjs' },
+                      { label: 'React Native', value: 'React Native' },
+                      { label: 'Flutter', value: 'Flutter' },
+                      // Add more options as needed
+                    ]}
                   />
               </InputGroup>
             </Box>
